@@ -11,7 +11,7 @@
         <Root level="info">
             <AppenderRef ref="Console"/>
         </Root>
-        <logger name="org.springframework.context.annotation.ConfigurationClassParser" level="trace"/>
+        <logger name="org.springframework" level="trace"/>
     </Loggers>
 
 </Configuration>
