@@ -61,6 +61,18 @@ public class SpringBootAmqpApplicationTest {
     }
 
     @Test
+    public void testTopic() {
+        Book book = new Book("红楼梦", "曹雪芹");
+        rabbitTemplate.convertAndSend("exchange.topic", "atguigu.#", book);
+    }
+
+    @Test
+    public void testTopic2() {
+        Book book = new Book("红楼梦", "高鄂");
+        rabbitTemplate.convertAndSend("exchange.topic", "*.news", book);
+    }
+
+    @Test
     public void createExchange() {
         admin.declareExchange(new DirectExchange("admin.exchange"));
     }
