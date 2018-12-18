@@ -32,24 +32,24 @@ public class SpringBootAmqpApplicationTest {
 
 
     @Test
-    public void testConvertAndSend() {
+    public void testDirect() {
         Map<String, Object> map = new ConcurrentHashMap<String, Object>();
         map.put("msg", "这是第一个消息");
         map.put("name", "CYH");
         map.put("date", "20181106");
         map.put("data", Arrays.asList(34, "Hello", 78.99));
-        rabbitTemplate.convertAndSend("directTest", "atguigu.news", map);
+        rabbitTemplate.convertAndSend("exchange.direct", "atguigu.emps", map);
     }
 
     @Test
-    public void testConvertAndSend2() {
+    public void testDirect2() {
         Book book = new Book("西游记", "吴承恩");
-        rabbitTemplate.convertAndSend("directTest", "atguigu.news", book);
+        rabbitTemplate.convertAndSend("exchange.direct", "gulixueyuan.news", book);
     }
 
     @Test
     public void testReceiveAndConvert() {
-        Object o = rabbitTemplate.receiveAndConvert("atguigu.news");
+        Object o = rabbitTemplate.receiveAndConvert("gulixueyuan.news");
         System.err.println(o.getClass());
         System.err.println(o);
     }
@@ -57,7 +57,7 @@ public class SpringBootAmqpApplicationTest {
     @Test
     public void testFanout() {
         Book book = new Book("三国演义", "罗贯中");
-        rabbitTemplate.convertAndSend("fanoutTest", "", book);
+        rabbitTemplate.convertAndSend("exchange.fanout", null, book);
     }
 
     @Test
