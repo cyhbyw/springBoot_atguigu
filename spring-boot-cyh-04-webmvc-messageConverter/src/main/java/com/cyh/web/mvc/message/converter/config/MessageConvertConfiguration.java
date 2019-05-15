@@ -10,6 +10,12 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
 
 /**
+ * 如果有配置文件继承了 DelegatingWebMvcConfiguration 或者 WebMvcConfigurationSupport
+ * 或者配置文件有 @EnableWebMvc 那么 @EnableAutoConfiguration 中的 WebMvcAutoConfiguration 将不会被自动配置，
+ * 而是使用 WebMvcConfigurationSupport 的配置
+ *
+ * @EnableWebMvc = WebMvcConfigurationSupport 使用 @EnableWebMvc 注解等于扩展 WebMvcConfigurationSupport 但是没有重写任何方法
+ *
  * @author: yanhua.chen
  * @date: 2019/5/14 11:45
  */
